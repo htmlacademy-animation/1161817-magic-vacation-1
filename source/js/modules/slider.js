@@ -26,9 +26,19 @@ export default () => {
             } else if (storySlider.activeIndex === 6 || storySlider.activeIndex === 7) {
               sliderContainer.style.backgroundImage = `url("img/slide4.jpg"), linear-gradient(180deg, rgba(45, 39, 63, 0) 0%, #2F2A42 16.85%)`;
             }
+            const itemTextElements = document.querySelectorAll('.slider__item-text');
+            itemTextElements.forEach((el,i) => itemTextElements[i].style.display = 'none');
           },
           resize: () => {
             storySlider.update();
+          },
+          slideChangeTransitionEnd: () => {
+            const slideActive = document.querySelector('.swiper-slide-active');
+            const slideNext = document.querySelector('.swiper-slide-next');
+
+            slideActive.lastElementChild.style.display = 'block';
+            slideNext.lastElementChild.style.animationDelay = '0.5s';
+            slideNext.lastElementChild.style.display = 'block';
           }
         },
         observer: true,
@@ -60,9 +70,19 @@ export default () => {
             } else if (storySlider.activeIndex === 6) {
               sliderContainer.style.backgroundImage = `url("img/slide4.jpg")`;
             }
+            const itemTextElements = document.querySelectorAll('.slider__item-text');
+            itemTextElements.forEach((el,i) => itemTextElements[i].style.display = 'none');
           },
           resize: () => {
             storySlider.update();
+          },
+          slideChangeTransitionEnd: () => {
+            const slideActive = document.querySelector('.swiper-slide-active');
+            const slideNext = document.querySelector('.swiper-slide-next');
+
+            slideActive.lastElementChild.style.display = 'block';
+            slideNext.lastElementChild.style.animationDelay = '0.5s';
+            slideNext.lastElementChild.style.display = 'block';
           }
         },
         observer: true,

@@ -29,6 +29,15 @@
   }
 }
 
+@keyframes textField {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
 .form__field {
   flex: none;
   margin-right: 3rem;
@@ -43,6 +52,9 @@
   border: 0;
   border-radius: 3rem;
   outline: none;
+
+  animation: textField 1s forwards;
+  transform-origin: right;
 
   &:focus {
     border: 1px solid $c-purple;
