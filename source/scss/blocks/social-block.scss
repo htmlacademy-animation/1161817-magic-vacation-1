@@ -35,6 +35,8 @@
     background-color: $c-light;
     border: 2px solid $c-light;
     z-index: -1;
+
+    transition: width 0.3s, height 0.3s;
   }
 
   svg {
@@ -55,22 +57,28 @@
   }
 
   &:focus {
-    color: $c-purple;
+    color: $c-light;
     outline: none;
 
     &::before {
       border-color: $c-purple;
+      background-color: $c-purple;
     }
 
     & + .social-block__list {
       opacity: 1;
       pointer-events: auto;
+
+      .social-block__link {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   }
 
   &:active,
-  &:active:focus {
-    color: $c-light;
+  &:active:focus-within {
+    color: $c-purple;
 
     &::before {
       width: 100%;
@@ -140,6 +148,21 @@
   .social-block--active & {
     opacity: 1;
     pointer-events: auto;
+
+    .social-block__link {
+      opacity: 100%;
+      transform: translateY(0);
+
+      &--fb {
+        transition: 0.2s ease-in-out;
+      }
+      &--insta {
+        transition: 0.3s ease-in-out;
+      }
+      &--vk {
+        transition: 0.4s ease-in-out;
+      }
+    }
   }
 
   li {
@@ -168,6 +191,8 @@
   color: $c-light;
   border: 2px solid transparent;
   border-radius: 50%;
+  opacity: 0;
+  transform: translateY(20px);
 
   @media (min-width: $stop-scaling) {
     width: 40px;
