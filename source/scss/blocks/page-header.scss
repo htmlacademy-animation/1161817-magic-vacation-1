@@ -1,3 +1,9 @@
+@keyframes animatedHeader {
+  to {
+    visibility: visible;
+  }
+}
+
 .page-header {
   position: fixed;
   top: 0;
@@ -5,6 +11,9 @@
   right: 0;
   padding: 2.7rem 0;
   z-index: 10;
+  visibility: hidden;
+  transition: 0.5s;
+  animation-timing-function: cubic-bezier(0.8, 0.0, 0.9, 0.2);
 
   @media (min-width: $stop-scaling) {
     padding: 27px 0;
@@ -19,11 +28,21 @@
   }
 }
 
+body.loaded .page-header {
+  animation: 0.5s animatedHeader forwards;
+}
+
 .page-header__wrapper {
   @include container;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+@keyframes animatedLogo {
+  to {
+    transform: translateX(0);
+  }
 }
 
 .page-header__logo {
@@ -35,6 +54,8 @@
   padding: 1rem 0;
   width: 10rem;
   color: $c-light;
+  transform: translateX(-20px);
+  transition: 1s;
 
   @media (min-width: $stop-scaling) {
     top: -5px;
@@ -69,6 +90,10 @@
     width: 100%;
     height: auto;
   }
+}
+
+body.loaded .page-header__logo {
+  animation: 0.5s animatedLogo forwards;
 }
 
 .page-header__toggler {
@@ -269,12 +294,6 @@
       }
     }
 
-    &.active {
-      &::after {
-        transform: scaleX(1);
-      }
-    }
-
     &:hover,
     &:focus {
       color: $c-purple;
@@ -287,6 +306,17 @@
         transform-origin: left;
       }
     }
+  }
+}
+
+body.loaded .page-header__menu {
+      a {
+        &.active {
+          &::after {
+            transform-origin: left;
+            transform: scaleX(1);
+          }
+        }
   }
 }
 
