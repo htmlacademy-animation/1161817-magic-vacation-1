@@ -8,6 +8,7 @@ export default class FullPageScroll {
 
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
+    this.fillBlock = document.querySelector(`#fill-block`);
 
     this.activeScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
@@ -42,6 +43,14 @@ export default class FullPageScroll {
   onUrlHashChanged() {
     const newIndex = Array.from(this.screenElements).findIndex((screen) => location.hash.slice(1) === screen.id);
     this.activeScreen = (newIndex < 0) ? 0 : newIndex;
+    if (this.activeScreen === 2) {
+      this.getDisplayTransition();
+      setTimeout(() => {
+        this.changePageDisplay();
+      }, 200);
+
+      return;
+    }
     this.changePageDisplay();
   }
 
@@ -49,6 +58,13 @@ export default class FullPageScroll {
     this.changeVisibilityDisplay();
     this.changeActiveMenuItem();
     this.emitChangeDisplayEvent();
+  }
+
+  getDisplayTransition() {
+    this.fillBlock.classList.add(`active`);
+    setTimeout(() => {
+      this.fillBlock.classList.remove(`active`);
+    }, 300);
   }
 
   changeVisibilityDisplay() {
