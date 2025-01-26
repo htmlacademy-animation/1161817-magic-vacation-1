@@ -1,8 +1,4 @@
 export default () => {
-  document.addEventListener(`DOMContentLoaded`, function () {
-    document.body.classList.add(`loaded`);
-  });
-
   let header = document.querySelector(`.js-header`);
   let menuToggler = document.querySelector(`.js-menu-toggler`);
   let menuLinks = document.querySelectorAll(`.js-menu-link`);

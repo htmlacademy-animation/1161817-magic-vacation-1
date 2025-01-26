@@ -2,6 +2,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: end;
 }
 
 .form__label {
@@ -29,21 +30,12 @@
   }
 }
 
-@keyframes textFieldExpand {
-  from {
-    width: 0;
-  }
-  to {
-    width: 90%;
-  }
-}
-
 .form__field {
   flex: none;
   margin-right: 3rem;
   padding: 0 5.6rem;
   height: 6rem;
-  width: 0;
+  width: calc(100% - 21rem);
   text-transform: uppercase;
   font: inherit;
   font-size: 2.4rem;
@@ -52,11 +44,11 @@
   border: 0;
   border-radius: 3rem;
   outline: none;
-  position: absolute;
-  right: 10%;
-
-  animation: textFieldExpand 1s forwards;
-
+  transition-duration: 0.5s;
+  transition-property: transform;
+  transition-timing-function: ease-in-out;
+  transform: scaleX(0);
+  transform-origin: right;
 
   &:focus {
     border: 1px solid $c-purple;
@@ -92,10 +84,13 @@
   }
 }
 
+.form__field__end {
+  transform: scaleX(1);
+}
+
 .form__button {
   flex-grow: 1;
-  position: absolute;
-  right: 0;
+  max-width: max-content;
 
   @media (orientation: portrait) {
     position: relative;
@@ -104,6 +99,7 @@
     width: 4rem;
     height: 4rem;
     font-size: 0;
+    max-width: none;
   }
 
   @media (max-width: $tablet) and (orientation: landscape) {
@@ -113,11 +109,13 @@
     width: 6rem;
     height: 6rem;
     font-size: 0;
+    max-width: none;
   }
 
   @media (max-width: $mobile) and (orientation: landscape) {
     width: 4rem;
     height: 4rem;
+    max-width: none;
   }
 
   svg {
@@ -143,7 +141,7 @@
 
 .form--result {
   .form__field {
-    width: calc(100% - 31rem);
+    width: calc(100% - 3rem);
 
     @media (min-width: $stop-scaling) {
       width: calc(100% - 310px);
